@@ -31,7 +31,6 @@ public class GameManager : MonoBehaviour
 
     private bool isPlaying = false;         // trạng thái chơi game
 
-
     void Awake()                            
     {
         if (Instance == null)
@@ -55,7 +54,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
     void Update()
     {
         if (AudioManager.Instance != null && bgmSource != null)
@@ -73,7 +71,6 @@ public class GameManager : MonoBehaviour
             EndGameUI();
         }
     }
-
 
     // ===== PLAY GAME =====
     public void PlayGame()
@@ -207,6 +204,4 @@ public class GameManager : MonoBehaviour
         if (AudioManager.Instance != null && !AudioManager.Instance.isMuted && bombSource != null)
             bombSource.Play();
     }
-
-    
 }
