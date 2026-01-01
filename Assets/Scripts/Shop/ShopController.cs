@@ -74,11 +74,15 @@ public class ShopController : MonoBehaviour
     {
         int gold = GoldData.GetGold();
 
+        // KHÔNG ĐỦ VÀNG
         if (gold < price)
         {
             ShowNotEnoughGold();
-            
-            // Nếu nút này chưa rung thì mới cho rung
+
+            // 🔊 ÂM THANH FAIL
+            if (AudioManager.Instance != null)
+                AudioManager.Instance.PlayBuyFail();
+
             if (!buttonsCurrentlyShaking.Contains(btn.transform))
             {
                 StartCoroutine(SafeShake(btn.transform));
@@ -86,8 +90,14 @@ public class ShopController : MonoBehaviour
             return;
         }
 
+        // ĐỦ VÀNG → MUA THÀNH CÔNG
         GoldData.SetGold(gold - price);
         ItemData.AddItem(key, 1);
+
+        // 🔊 ÂM THANH SUCCESS
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.PlayBuySuccess();
+
         UpdateUI();
     }
 

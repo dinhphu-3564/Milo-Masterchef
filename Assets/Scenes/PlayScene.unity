@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 250088704}
   - component: {fileID: 250088703}
   - component: {fileID: 250088706}
+  - component: {fileID: 250088707}
   m_Layer: 5
   m_Name: Play_G3
   m_TagString: Untagged
@@ -270,6 +271,18 @@ MonoBehaviour:
   m_EffectColor: {r: 0.7924528, g: 0.14490758, b: 0.10840159, a: 0.5}
   m_EffectDistance: {x: 10, y: -8}
   m_UseGraphicAlpha: 1
+--- !u!114 &250088707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 250088701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b96903806fbed470893cf2a6cc9c20e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &473119829
 GameObject:
   m_ObjectHideFlags: 0
@@ -283,6 +296,7 @@ GameObject:
   - component: {fileID: 473119832}
   - component: {fileID: 473119831}
   - component: {fileID: 473119834}
+  - component: {fileID: 473119835}
   m_Layer: 5
   m_Name: Play_G1
   m_TagString: Untagged
@@ -418,6 +432,18 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0.6272721, b: 1, a: 0.5}
   m_EffectDistance: {x: 10, y: -8}
   m_UseGraphicAlpha: 1
+--- !u!114 &473119835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 473119829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b96903806fbed470893cf2a6cc9c20e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &640243764
 GameObject:
   m_ObjectHideFlags: 0
@@ -542,6 +568,7 @@ GameObject:
   - component: {fileID: 973853677}
   - component: {fileID: 973853676}
   - component: {fileID: 973853675}
+  - component: {fileID: 973853678}
   m_Layer: 5
   m_Name: Btn_Back
   m_TagString: Untagged
@@ -663,6 +690,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 973853673}
   m_CullTransparentMesh: 1
+--- !u!114 &973853678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 973853673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b96903806fbed470893cf2a6cc9c20e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1154219417
 GameObject:
   m_ObjectHideFlags: 0
@@ -819,6 +858,7 @@ GameObject:
   - component: {fileID: 1840000478}
   - component: {fileID: 1840000477}
   - component: {fileID: 1840000480}
+  - component: {fileID: 1840000481}
   m_Layer: 5
   m_Name: Play_G2
   m_TagString: Untagged
@@ -954,6 +994,18 @@ MonoBehaviour:
   m_EffectColor: {r: 0.25222525, g: 0.9528302, b: 0.12135102, a: 0.5}
   m_EffectDistance: {x: 10, y: -8}
   m_UseGraphicAlpha: 1
+--- !u!114 &1840000481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1840000475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b96903806fbed470893cf2a6cc9c20e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1929305622
 GameObject:
   m_ObjectHideFlags: 0

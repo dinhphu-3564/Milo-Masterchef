@@ -9,6 +9,10 @@ public class AudioManager : MonoBehaviour
     public AudioSource sfxSource;
 
     public bool isMuted = false;
+    public AudioClip buttonClickClip;
+    public AudioClip buySuccessClip;
+    public AudioClip buyFailClip;
+
 
     void Awake()
     {
@@ -26,12 +30,41 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    // Phát âm thanh nút bấm
+    public void PlayButtonClick()
+    {
+        if (isMuted) return;
+
+        if (sfxSource != null && buttonClickClip != null)
+            sfxSource.PlayOneShot(buttonClickClip);
+    }
+
+    // Phát âm thanh mua thành công
+    public void PlayBuySuccess()
+    {
+        if (isMuted) return;
+
+        if (sfxSource != null && buySuccessClip != null)
+            sfxSource.PlayOneShot(buySuccessClip);
+    }
+
+    // Phát âm thanh mua thất bại
+    public void PlayBuyFail()
+    {
+        if (isMuted) return;
+
+        if (sfxSource != null && buyFailClip != null)
+            sfxSource.PlayOneShot(buyFailClip);
+    }
+
+    // Chuyển đổi trạng thái mute
     public void ToggleMute()
     {
         isMuted = !isMuted;
         PlayerPrefs.SetInt("MUTED", isMuted ? 1 : 0);
         ApplyMute();
     }
+
 
     void ApplyMute()
     {

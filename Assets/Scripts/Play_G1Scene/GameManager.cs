@@ -159,14 +159,14 @@ public class GameManager : MonoBehaviour
     void UpdateGoldUI()
     {
         if (goldText != null)                       // cập nhật text vàng
-            goldText.text = gold.ToString();        // hiển thị số vàng hiện tại
+            goldText.text = gold.ToString() + "$";        // hiển thị số vàng hiện tại
     }
 
     // CẬP NHẬT THỜI GIAN
     void UpdateTimeUI()
     {
         if (timeText != null)                                              // cập nhật text thời gian    
-            timeText.text = Mathf.CeilToInt(currentTime).ToString();       // hiển thị thời gian hiện tại
+            timeText.text = Mathf.CeilToInt(currentTime).ToString() + "s";       // hiển thị thời gian hiện tại
     }
 
     // HIỂN THỊ GIAO DIỆN KẾT THÚC GAME
