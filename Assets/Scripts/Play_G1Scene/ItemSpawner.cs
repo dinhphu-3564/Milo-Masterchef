@@ -3,30 +3,45 @@ using UnityEngine;
 
 public class ItemSpawner : MonoBehaviour
 {
-    public FallingItem[] items;             // các item rơi xuống
-    public float spawnRate = 1f;            // thời gian giữa các lần spawn
-    public float minX = -7f;                // giới hạn vị trí spawn theo trục X
-    public float maxX = 7f;                 // giới hạn vị trí spawn theo trục X
-    public float spawnY = 6f;               // vị trí spawn theo trục Y
+    [Header("Spawn Items")]
+    public FallingItem[] items;          // Danh sách vật phẩm có thể spawn
 
+    [Header("Spawn Timing")]
+    public float spawnRate = 1f;         // Thời gian giữa các lần spawn
+
+    [Header("Spawn Area")]
+    public float minX = -7f;             // Giới hạn trái
+    public float maxX = 7f;              // Giới hạn phải
+    public float spawnY = 6f;            // Vị trí spawn theo trục Y
+
+    // ===================== START =====================
     void Start()
     {
+        // Spawn lặp lại theo chu kỳ
         InvokeRepeating(nameof(Spawn), 1f, spawnRate);
-        
     }
 
-    void Spawn()                                        // tạo vật phẩm rơi xuống
+    // ===================== SPAWN =====================
+    void Spawn()
     {
-        if (items.Length == 0) return;                  // nếu không có vật phẩm nào để spawn thì thoát
+        // Không có item để spawn
+        if (items == null || items.Length == 0) return;
 
-        int rand = Random.Range(0, items.Length);       // chọn ngẫu nhiên một vật phẩm từ mảng
+        // Chọn ngẫu nhiên item
+        int randomIndex = Random.Range(0, items.Length);
 
-        Vector3 pos = new Vector3(                      // xác định vị trí spawn
-            Random.Range(minX, maxX),                   // vị trí X ngẫu nhiên trong khoảng minX đến maxX
-            spawnY,                                     // vị trí Y cố định        
-            0
+        // Tạo vị trí spawn
+        Vector3 spawnPos = new Vector3(
+            Random.Range(minX, maxX),
+            spawnY,
+            0f
         );
 
-        Instantiate(items[rand], pos, Quaternion.identity);     // tạo vật phẩm tại vị trí đã xác định với không có xoay
+        // Tạo item
+        Instantiate(
+            items[randomIndex],
+            spawnPos,
+            Quaternion.identity
+        );
     }
 }

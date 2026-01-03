@@ -5,8 +5,9 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
 
-    public AudioSource bgmSource;
-    public AudioSource sfxSource;
+    public AudioSource bgmSource;       // Nguồn âm thanh nền
+    public AudioSource sfxSource;       // Nguồn âm thanh hiệu ứng
+
 
     public bool isMuted = false;
     public AudioClip buttonClickClip;
@@ -22,6 +23,7 @@ public class AudioManager : MonoBehaviour
             DontDestroyOnLoad(gameObject); // Giữ AudioManager khi chuyển scene
 
             isMuted = PlayerPrefs.GetInt("MUTED", 0) == 1;
+        
             ApplyMute();
         }
         else
@@ -64,7 +66,6 @@ public class AudioManager : MonoBehaviour
         PlayerPrefs.SetInt("MUTED", isMuted ? 1 : 0);
         ApplyMute();
     }
-
 
     void ApplyMute()
     {

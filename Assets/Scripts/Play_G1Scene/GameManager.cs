@@ -1,37 +1,46 @@
 using UnityEngine;
 using TMPro;
-// public TextMeshProUGUI finalGoldText;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance;     
+    public static GameManager Instance;
 
+    // ===================== SCORE =====================
     [Header("Score")]
-    public int gold = 0;                    // số vàng hiện tại
-    public TextMeshProUGUI goldText;        // text hiển thị vàng
+    public int gold = 0;                          // Số vàng hiện tại
+    public TextMeshProUGUI goldText;              // Text hiển thị vàng
 
+    // ===================== TIME ======================
     [Header("Time")]
-    public float gameTime = 90f;            // thời gian chơi
-    private float currentTime;              // thời gian hiện tại
-    public TextMeshProUGUI timeText;        // text hiển thị thời gian
+    public float gameTime = 90f;                  // Tổng thời gian chơi
+    private float currentTime;                    // Thời gian còn lại
+    public TextMeshProUGUI timeText;              // Text hiển thị thời gian
 
+    // ===================== UI ========================
     [Header("UI")]
-    public GameObject startPanel;           // panel có nút PLAY
-    public GameObject gameOverPanel;        // panel hết giờ
-    public TextMeshProUGUI finalGoldText;   // text hiển thị vàng cuối cùng
+    public GameObject startPanel;                 // Panel bắt đầu
+    public GameObject gameOverPanel;              // Panel GameOver
+    public TextMeshProUGUI finalGoldText;         // Text vàng cuối game
 
-    //Âm thanh Scene_G1
+    // ===================== AUDIO =====================
     [Header("Audio")]
-    public AudioSource bgmSource;           // nhạc nền
+    public AudioSource bgmSource;                 // Nhạc nền
 
     [Header("SFX")]
-    public AudioSource eatSource;           // âm thanh ăn trái cây
-    public AudioSource bombSource;          // âm thanh bom nổ
+    public AudioSource eatSource;                 // Âm thanh ăn
+    public AudioSource bombSource;                // Âm thanh bom / rock
+
+    // ================= FLOATING TEXT =================
+    [Header("Floating Text")]
+    public GameObject floatingTextPrefab;         // Prefab chữ bay
+    public Transform canvasTransform;             // Canvas chứa chữ bay
+
+    // ===================== STATE =====================
+    private bool isPlaying = false;               // Trạng thái game
 
 
-    private bool isPlaying = false;         // trạng thái chơi game
-
-    void Awake()                            
+    // ===================== AWAKE =====================
+    void Awake()
     {
         if (Instance == null)
             Instance = this;
@@ -39,23 +48,27 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
     }
 
+    // ===================== START =====================
     void Start()
     {
         currentTime = gameTime;
+
         UpdateGoldUI();
         UpdateTimeUI();
 
-        Time.timeScale = 0f;
+        Time.timeScale = 0f; // Tạm dừng game khi mới vào
 
-        // ÁP DỤNG MUTE THEO SETTING
+        // Đồng bộ mute với AudioManager
         if (AudioManager.Instance != null && bgmSource != null)
         {
             bgmSource.mute = AudioManager.Instance.isMuted;
         }
     }
 
+    // ===================== UPDATE ====================
     void Update()
     {
+        // Đồng bộ mute liên tục
         if (AudioManager.Instance != null && bgmSource != null)
         {
             bgmSource.mute = AudioManager.Instance.isMuted;
@@ -72,7 +85,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // ===== PLAY GAME =====
+    // ===================== PLAY GAME =================
     public void PlayGame()
     {
         gold = 0;
@@ -82,11 +95,13 @@ public class GameManager : MonoBehaviour
         UpdateGoldUI();
         UpdateTimeUI();
 
-        startPanel.SetActive(false);
+        if (startPanel != null)
+            startPanel.SetActive(false);
+
         if (gameOverPanel != null)
             gameOverPanel.SetActive(false);
 
-        Time.timeScale = 1f; // bắt đầu game
+        Time.timeScale = 1f;
 
         if (bgmSource != null && AudioManager.Instance != null && !AudioManager.Instance.isMuted)
         {
@@ -94,26 +109,21 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // Chơi lại 
+    // ===================== RESTART ===================
     public void RestartGame()
     {
-        // 1. Reset các thông số về ban đầu
         gold = 0;
         currentTime = gameTime;
         isPlaying = true;
 
-        // 2. Cập nhật lại giao diện (UI)
         UpdateGoldUI();
         UpdateTimeUI();
 
-        // 3. Ẩn bảng GameOver
         if (gameOverPanel != null)
             gameOverPanel.SetActive(false);
 
-        // 4. Chạy lại thời gian trong game
         Time.timeScale = 1f;
 
-        // 5. Phát lại nhạc nền
         if (bgmSource != null)
         {
             bgmSource.Stop();
@@ -122,26 +132,45 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // ===== END GAME =====
+    // ===================== END GAME ==================
     void EndGame()
     {
-        isPlaying = false;                      // dừng trạng thái chơi
-        Time.timeScale = 0f;                    // dừng thời gian trong game
+        isPlaying = false;
+        Time.timeScale = 0f;
 
-        if (gameOverPanel != null)              // hiển thị bảng GameOver
-            gameOverPanel.SetActive(true);      
+        if (gameOverPanel != null)
+            gameOverPanel.SetActive(true);
     }
 
-    // ===== ADD GOLD =====
-    public void AddGold(int amount)             
+    void EndGameUI()
     {
-        if (!isPlaying) return;                 // hết giờ không cộng vàng
+        isPlaying = false;
+        Time.timeScale = 0f;
 
-        gold += amount;                         // cộng vàng
-        UpdateGoldUI();                         // cập nhật giao diện
+        if (bgmSource != null)
+            bgmSource.Stop();
+
+        // Lưu vàng sau khi kết thúc
+        GoldData.AddGold(gold);
+
+        if (gameOverPanel != null)
+        {
+            gameOverPanel.SetActive(true);
+
+            if (finalGoldText != null)
+                finalGoldText.text = gold + "$";
+        }
     }
 
-    // trừ vàng bomb và rock
+    // ===================== GOLD ======================
+    public void AddGold(int amount)
+    {
+        if (!isPlaying) return;
+
+        gold += amount;
+        UpdateGoldUI();
+    }
+
     public void MinusGold(int amount)
     {
         if (!isPlaying) return;
@@ -152,56 +181,46 @@ public class GameManager : MonoBehaviour
         UpdateGoldUI();
     }
 
-    // CẬP NHẬT GIAO DIỆN
     void UpdateGoldUI()
     {
-        if (goldText != null)                       // cập nhật text vàng
-            goldText.text = gold.ToString() + "$";        // hiển thị số vàng hiện tại
+        if (goldText != null)
+            goldText.text = gold + "$";
     }
 
-    // CẬP NHẬT THỜI GIAN
+    // ===================== TIME UI ===================
     void UpdateTimeUI()
     {
-        if (timeText != null)                                              // cập nhật text thời gian    
-            timeText.text = Mathf.CeilToInt(currentTime).ToString() + "s";       // hiển thị thời gian hiện tại
+        if (timeText != null)
+            timeText.text = Mathf.CeilToInt(currentTime) + "s";
     }
 
-    // HIỂN THỊ GIAO DIỆN KẾT THÚC GAME
-    void EndGameUI()
-    {
-        isPlaying = false;                      // dừng trạng thái chơi
-        Time.timeScale = 0f;                    // dừng thời gian trong game
-
-        // Dừng nhạc nền
-        if (bgmSource != null)
-        bgmSource.Stop();
-
-        // LƯU GOLD SAU KHI HẾT GAME
-        GoldData.AddGold(gold);
-
-        // Hiển thị bảng GameOver
-        if (gameOverPanel != null)
-        {
-            gameOverPanel.SetActive(true);
-            // hiển thị số điểm lên bảng GameOver
-            if (finalGoldText != null)
-            {
-                finalGoldText.text = gold.ToString() + "$"; 
-            }
-        }
-    }
-
-    // âm thanh ăn trái cây
+    // ===================== SFX =======================
     public void PlayEatSound()
     {
         if (AudioManager.Instance != null && !AudioManager.Instance.isMuted && eatSource != null)
             eatSource.Play();
     }
 
-    // âm thanh bomb và rock
     public void PlayBombSound()
     {
         if (AudioManager.Instance != null && !AudioManager.Instance.isMuted && bombSource != null)
             bombSource.Play();
+    }
+
+    // ================= FLOATING TEXT ================
+    public void ShowFloatingText(Vector3 worldPosition, string message, Color color)
+    {
+        if (floatingTextPrefab == null || canvasTransform == null) return;
+
+        GameObject textObj = Instantiate(floatingTextPrefab, canvasTransform);
+
+        Vector2 screenPos = Camera.main.WorldToScreenPoint(worldPosition);
+        textObj.transform.position = screenPos;
+
+        FloatingText ft = textObj.GetComponent<FloatingText>();
+        if (ft != null)
+        {
+            ft.SetText(message, color);
+        }
     }
 }

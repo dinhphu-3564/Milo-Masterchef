@@ -2318,6 +2318,8 @@ MonoBehaviour:
   bgmSource: {fileID: 16309432}
   eatSource: {fileID: 329166134}
   bombSource: {fileID: 445981759}
+  floatingTextPrefab: {fileID: 3886214147650686118, guid: 20870a897ccda4ba19efca64eae1deb7, type: 3}
+  canvasTransform: {fileID: 1278131878}
 --- !u!4 &583338625
 Transform:
   m_ObjectHideFlags: 0

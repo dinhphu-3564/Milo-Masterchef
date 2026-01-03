@@ -2,46 +2,51 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float moveSpeed = 3f;                        // tốc độ di chuyển của player
+    [Header("Movement")]
+    public float moveSpeed = 3f;                 // Tốc độ di chuyển
 
-    [Header("Player size")]
-    public float playerHalfWidth = 0.5f;                // chỉnh cho khớp sprite
+    [Header("Player Size")]
+    public float playerHalfWidth = 0.5f;         // Nửa chiều rộng sprite (để giới hạn màn hình)
 
-    private Animator anim;                              // tham chiếu đến Animator
-    private Camera cam;                                 // tham chiếu đến Camera chính
+    private Animator anim;                       // Animator của player
+    private Camera mainCam;                      // Camera chính
 
+    // ===================== START =====================
     void Start()
     {
-        anim = GetComponent<Animator>();                // lấy thành phần Animator
-        cam = Camera.main;                              // lấy tham chiếu đến Camera chính
+        anim = GetComponent<Animator>();
+        mainCam = Camera.main;
     }
 
+    // ===================== UPDATE ====================
     void Update()
     {
-        float moveInput = Input.GetAxisRaw("Horizontal");    // nhận input từ bàn phím (A/D hoặc mũi tên)
+        // ===== INPUT =====
+        float moveInput = Input.GetAxisRaw("Horizontal");
 
-        Vector3 pos = transform.position;                               // vị trí hiện tại
-        pos += Vector3.right * moveInput * moveSpeed * Time.deltaTime;  
+        // ===== MOVE =====
+        Vector3 position = transform.position;
+        position += Vector3.right * moveInput * moveSpeed * Time.deltaTime;
 
-        float camHalfWidth = cam.orthographicSize * cam.aspect;         // nửa chiều rộng của camera
+        // ===== CAMERA LIMIT =====
+        float camHalfWidth = mainCam.orthographicSize * mainCam.aspect;
 
-        float leftLimit  = cam.transform.position.x - camHalfWidth + playerHalfWidth;   // giới hạn bên trái
-        float rightLimit = cam.transform.position.x + camHalfWidth - playerHalfWidth;   // giới hạn bên phải
+        float leftLimit  = mainCam.transform.position.x - camHalfWidth + playerHalfWidth;
+        float rightLimit = mainCam.transform.position.x + camHalfWidth - playerHalfWidth;
 
-        // Khóa trong màn hình
-        pos.x = Mathf.Clamp(pos.x, leftLimit, rightLimit);          
+        position.x = Mathf.Clamp(position.x, leftLimit, rightLimit);
+        transform.position = position;
 
-        transform.position = pos;       // Cập nhật vị trí player
-
-        // Đổi hướng
+        // ===== FLIP SPRITE =====
         if (moveInput != 0)
         {
-            Vector3 scale = transform.localScale;                       // lấy scale hiện tại
-            scale.x = Mathf.Abs(scale.x) * (moveInput > 0 ? 1 : -1);    // đổi hướng sprite
-            transform.localScale = scale;                               // cập nhật scale mới
+            Vector3 scale = transform.localScale;
+            scale.x = Mathf.Abs(scale.x) * (moveInput > 0 ? 1 : -1);
+            transform.localScale = scale;
         }
 
-        // Animation
-        anim.SetBool("Walk", moveInput != 0);                           
+        // ===== ANIMATION =====
+        if (anim != null)
+            anim.SetBool("Walk", moveInput != 0);
     }
 }
