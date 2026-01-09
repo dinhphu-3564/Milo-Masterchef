@@ -6,7 +6,6 @@ public class BasketCollect : MonoBehaviour
 {
     public int score = 0;                               // điểm số hiện tại
     public TextMeshProUGUI scoreText;                   // tham chiếu đến thành phần TextMeshProUGUI để hiển thị điểm số 
-
     void Start()
     {
         scoreText.text = "Score: 0";                    // khởi tạo điểm số hiển thị ban đầu
