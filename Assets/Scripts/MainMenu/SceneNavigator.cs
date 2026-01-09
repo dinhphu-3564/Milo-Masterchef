@@ -17,6 +17,7 @@ public class SceneNavigator : MonoBehaviour
     // Chuyển về Menu chính
     public void GoBackToMainMenu()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
     }
 }
