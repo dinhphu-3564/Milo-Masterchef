@@ -8,6 +8,8 @@ TagManager:
   - Item
   - Bomb
   - Rock
+  - Pan
+  - Customer
   layers:
   - Default
   - TransparentFX
@@ -56,4 +58,7 @@ TagManager:
     locked: 0
   - name: Item
     uniqueID: 2536733899
+    locked: 0
+  - name: Foreground
+    uniqueID: 3384417931
     locked: 0
