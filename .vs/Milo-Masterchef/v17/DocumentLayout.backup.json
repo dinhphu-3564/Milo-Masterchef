@@ -3,20 +3,24 @@
   "WorkspaceRootPath": "D:\\GitHub\\Milo-Masterchef\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{6A928913-7412-5CB4-A745-84BEF04608D7}|Assembly-CSharp.csproj|d:\\github\\milo-masterchef\\assets\\scripts\\play_g3scene\\levelmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6A928913-7412-5CB4-A745-84BEF04608D7}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\play_g3scene\\levelmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6A928913-7412-5CB4-A745-84BEF04608D7}|Assembly-CSharp.csproj|D:\\GitHub\\Milo-Masterchef\\assets\\scripts\\play_g3scene\\cookingpan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6A928913-7412-5CB4-A745-84BEF04608D7}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\play_g3scene\\cookingpan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6A928913-7412-5CB4-A745-84BEF04608D7}|Assembly-CSharp.csproj|D:\\GitHub\\Milo-Masterchef\\assets\\scripts\\play_g3scene\\customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6A928913-7412-5CB4-A745-84BEF04608D7}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\play_g3scene\\customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6A928913-7412-5CB4-A745-84BEF04608D7}|Assembly-CSharp.csproj|D:\\GitHub\\Milo-Masterchef\\assets\\scripts\\play_g3scene\\customermanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6A928913-7412-5CB4-A745-84BEF04608D7}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\play_g3scene\\customermanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6A928913-7412-5CB4-A745-84BEF04608D7}|Assembly-CSharp.csproj|d:\\github\\milo-masterchef\\assets\\scripts\\play_g3scene\\levelmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6A928913-7412-5CB4-A745-84BEF04608D7}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\play_g3scene\\levelmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6A928913-7412-5CB4-A745-84BEF04608D7}|Assembly-CSharp.csproj|D:\\GitHub\\Milo-Masterchef\\assets\\scripts\\play_g3scene\\cookingpan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6A928913-7412-5CB4-A745-84BEF04608D7}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\play_g3scene\\cookingpan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6A928913-7412-5CB4-A745-84BEF04608D7}|Assembly-CSharp.csproj|d:\\github\\milo-masterchef\\assets\\scripts\\shop\\gamemanagement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6A928913-7412-5CB4-A745-84BEF04608D7}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\shop\\gamemanagement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6A928913-7412-5CB4-A745-84BEF04608D7}|Assembly-CSharp.csproj|D:\\GitHub\\Milo-Masterchef\\assets\\scripts\\play_g3scene\\customermanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6A928913-7412-5CB4-A745-84BEF04608D7}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\play_g3scene\\customermanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6A928913-7412-5CB4-A745-84BEF04608D7}|Assembly-CSharp.csproj|D:\\GitHub\\Milo-Masterchef\\assets\\scripts\\play_g3scene\\dishdrag.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -46,7 +50,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -54,44 +58,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
+              "Title": "GameManagement.cs",
+              "DocumentMoniker": "D:\\GitHub\\Milo-Masterchef\\Assets\\Scripts\\Shop\\GameManagement.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Shop\\GameManagement.cs",
+              "ToolTip": "D:\\GitHub\\Milo-Masterchef\\Assets\\Scripts\\Shop\\GameManagement.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Shop\\GameManagement.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAxwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-08T19:32:19.669Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "LevelManager.cs",
               "DocumentMoniker": "D:\\GitHub\\Milo-Masterchef\\Assets\\Scripts\\Play_G3Scene\\LevelManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Play_G3Scene\\LevelManager.cs",
               "ToolTip": "D:\\GitHub\\Milo-Masterchef\\Assets\\Scripts\\Play_G3Scene\\LevelManager.cs",
               "RelativeToolTip": "Assets\\Scripts\\Play_G3Scene\\LevelManager.cs",
-              "ViewState": "AgIAAFQAAAAAAAAAAAA7wGkAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAABwAAAAAAAAAAAAkwCcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-07T19:48:30.12Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "CookingPan.cs",
-              "DocumentMoniker": "D:\\GitHub\\Milo-Masterchef\\Assets\\Scripts\\Play_G3Scene\\CookingPan.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Play_G3Scene\\CookingPan.cs",
-              "ToolTip": "D:\\GitHub\\Milo-Masterchef\\Assets\\Scripts\\Play_G3Scene\\CookingPan.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Play_G3Scene\\CookingPan.cs",
-              "ViewState": "AgIAAGQAAAAAAAAAAAAowHMAAABWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-07T03:55:36.649Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "DishDrag.cs",
-              "DocumentMoniker": "D:\\GitHub\\Milo-Masterchef\\Assets\\Scripts\\Play_G3Scene\\DishDrag.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Play_G3Scene\\DishDrag.cs",
-              "ToolTip": "D:\\GitHub\\Milo-Masterchef\\Assets\\Scripts\\Play_G3Scene\\DishDrag.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Play_G3Scene\\DishDrag.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAmwA0AAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-07T09:30:44.76Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
               "Title": "CustomerManager.cs",
               "DocumentMoniker": "D:\\GitHub\\Milo-Masterchef\\Assets\\Scripts\\Play_G3Scene\\CustomerManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Play_G3Scene\\CustomerManager.cs",
@@ -109,13 +102,39 @@
               "RelativeDocumentMoniker": "Assets\\Scripts\\Play_G3Scene\\Customer.cs",
               "ToolTip": "D:\\GitHub\\Milo-Masterchef\\Assets\\Scripts\\Play_G3Scene\\Customer.cs",
               "RelativeToolTip": "Assets\\Scripts\\Play_G3Scene\\Customer.cs",
-              "ViewState": "AgIAAD0AAAAAAAAAAAAmwIwAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAABsAAAAAAAAAAAAIwDMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-07T15:51:05.297Z"
+              "WhenOpened": "2026-01-07T15:51:05.297Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CookingPan.cs",
+              "DocumentMoniker": "D:\\GitHub\\Milo-Masterchef\\Assets\\Scripts\\Play_G3Scene\\CookingPan.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Play_G3Scene\\CookingPan.cs",
+              "ToolTip": "D:\\GitHub\\Milo-Masterchef\\Assets\\Scripts\\Play_G3Scene\\CookingPan.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Play_G3Scene\\CookingPan.cs",
+              "ViewState": "AgIAANIAAAAAAAAAAAAqwOgAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-07T03:55:36.649Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
+              "Title": "DishDrag.cs",
+              "DocumentMoniker": "D:\\GitHub\\Milo-Masterchef\\Assets\\Scripts\\Play_G3Scene\\DishDrag.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Play_G3Scene\\DishDrag.cs",
+              "ToolTip": "D:\\GitHub\\Milo-Masterchef\\Assets\\Scripts\\Play_G3Scene\\DishDrag.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Play_G3Scene\\DishDrag.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAmwA0AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-07T09:30:44.76Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "InventoryManager.cs",
               "DocumentMoniker": "D:\\GitHub\\Milo-Masterchef\\Assets\\Scripts\\Play_G3Scene\\InventoryManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Play_G3Scene\\InventoryManager.cs",
@@ -127,7 +146,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "GameData.cs",
               "DocumentMoniker": "D:\\GitHub\\Milo-Masterchef\\Assets\\Scripts\\Shop\\GameData.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Shop\\GameData.cs",
@@ -138,7 +157,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "IngredientDrag.cs",
               "DocumentMoniker": "D:\\GitHub\\Milo-Masterchef\\Assets\\Scripts\\Play_G3Scence\\IngredientDrag.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Play_G3Scence\\IngredientDrag.cs",
@@ -150,7 +169,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "ItemData.cs",
               "DocumentMoniker": "D:\\GitHub\\Milo-Masterchef\\Assets\\Scripts\\Shop\\ItemData.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Shop\\ItemData.cs",
