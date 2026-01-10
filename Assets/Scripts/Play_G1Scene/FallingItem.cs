@@ -45,7 +45,6 @@ public class FallingItem : MonoBehaviour
         if (CompareTag("Item"))
         {
             GameManager.Instance.AddGold(goldValue);
-            GameManager.Instance.PlayEatSound();
             ShowGoldText("+" + goldValue + "$", Color.green);
         }
 
@@ -53,7 +52,7 @@ public class FallingItem : MonoBehaviour
         if (CompareTag("Bomb") || CompareTag("Rock"))
         {
             GameManager.Instance.MinusGold(goldValue);
-            GameManager.Instance.PlayBombSound();
+            
 
             Color textColor = CompareTag("Bomb") ? Color.red : Color.gray;
             ShowGoldText("-" + goldValue + "$", textColor);

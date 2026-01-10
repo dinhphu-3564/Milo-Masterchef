@@ -59,20 +59,14 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0f; // Tạm dừng game khi mới vào
 
         // Đồng bộ mute với AudioManager
-        if (AudioManager.Instance != null && bgmSource != null)
-        {
-            bgmSource.mute = AudioManager.Instance.isMuted;
-        }
+        
     }
 
     // ===================== UPDATE ====================
     void Update()
     {
         // Đồng bộ mute liên tục
-        if (AudioManager.Instance != null && bgmSource != null)
-        {
-            bgmSource.mute = AudioManager.Instance.isMuted;
-        }
+        
 
         if (!isPlaying) return;
 
@@ -103,10 +97,7 @@ public class GameManager : MonoBehaviour
 
         Time.timeScale = 1f;
 
-        if (bgmSource != null && AudioManager.Instance != null && !AudioManager.Instance.isMuted)
-        {
-            bgmSource.Play();
-        }
+        
     }
 
     // ===================== RESTART ===================
@@ -124,12 +115,7 @@ public class GameManager : MonoBehaviour
 
         Time.timeScale = 1f;
 
-        if (bgmSource != null)
-        {
-            bgmSource.Stop();
-            if (AudioManager.Instance != null && !AudioManager.Instance.isMuted)
-                bgmSource.Play();
-        }
+        
     }
 
     // ===================== END GAME ==================
@@ -195,17 +181,7 @@ public class GameManager : MonoBehaviour
     }
 
     // ===================== SFX =======================
-    public void PlayEatSound()
-    {
-        if (AudioManager.Instance != null && !AudioManager.Instance.isMuted && eatSource != null)
-            eatSource.Play();
-    }
-
-    public void PlayBombSound()
-    {
-        if (AudioManager.Instance != null && !AudioManager.Instance.isMuted && bombSource != null)
-            bombSource.Play();
-    }
+   
 
     // ================= FLOATING TEXT ================
     public void ShowFloatingText(Vector3 worldPosition, string message, Color color)
