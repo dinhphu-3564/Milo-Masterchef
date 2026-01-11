@@ -9,7 +9,7 @@ public class ShopController : MonoBehaviour
     [Header("Gold")]
     public TextMeshProUGUI goldText;
 
-    [Header("Inventory UI")]
+    [Header("Inventory UI (Kéo Text hiển thị số lượng vào đây)")]
     public TextMeshProUGUI waterCountText;
     public TextMeshProUGUI grainCountText;
     public TextMeshProUGUI grassCountText;
@@ -27,15 +27,14 @@ public class ShopController : MonoBehaviour
     public GameObject notEnoughGoldText;
 
     private Coroutine notifyCoroutine;
-    
-    // Lưu trữ vị trí gốc của các nút ngay khi vào game
+
+    // Lưu trữ vị trí gốc của các nút
     private Dictionary<Transform, Vector2> buttonOriginalPositions = new Dictionary<Transform, Vector2>();
-    // Đánh dấu nút nào đang trong quá trình rung
     private HashSet<Transform> buttonsCurrentlyShaking = new HashSet<Transform>();
 
     void Awake()
     {
-        // Lưu vị trí chuẩn của tất cả các nút để dùng mãi mãi
+        // Lưu vị trí chuẩn của tất cả các nút
         SavePosition(buyWaterBtn.transform);
         SavePosition(buyGrainBtn.transform);
         SavePosition(buyGrassBtn.transform);
@@ -53,18 +52,36 @@ public class ShopController : MonoBehaviour
         UpdateUI();
     }
 
+    // [QUAN TRỌNG] Chạy mỗi khi Shop được bật lên để cập nhật số liệu mới nhất
+    void OnEnable()
+    {
+        UpdateUI();
+    }
+
     void UpdateUI()
     {
+        // 1. Cập nhật tiền
         int gold = GoldData.GetGold();
-        goldText.text = gold + "$";
-        waterCountText.text = "x " + ItemData.GetItem("ITEM_WATER");
-        grainCountText.text = "x " + ItemData.GetItem("ITEM_GRAIN");
-        grassCountText.text = "x " + ItemData.GetItem("ITEM_GRASS");
+        if (goldText != null) goldText.text = gold + "$";
 
+        // 2. Cập nhật số lượng nguyên liệu (Lấy từ ItemData)
+        // Lưu ý: Đảm bảo ItemData đã có các key này
+        if (waterCountText != null)
+            waterCountText.text = "x " + ItemData.GetItem("ITEM_WATER");
+
+        if (grainCountText != null)
+            grainCountText.text = "x " + ItemData.GetItem("ITEM_GRAIN");
+
+        if (grassCountText != null)
+            grassCountText.text = "x " + ItemData.GetItem("ITEM_GRASS");
+
+        // 3. Đổi màu nút nếu không đủ tiền
         UpdateButtonColor(buyWaterBtn, gold >= 20);
         UpdateButtonColor(buyGrainBtn, gold >= 30);
         UpdateButtonColor(buyGrassBtn, gold >= 15);
     }
+
+    // --- CÁC HÀM MUA HÀNG ---
 
     public void BuyWater() { BuyItem(20, "ITEM_WATER", buyWaterBtn); }
     public void BuyGrain() { BuyItem(30, "ITEM_GRAIN", buyGrainBtn); }
@@ -79,10 +96,7 @@ public class ShopController : MonoBehaviour
         {
             ShowNotEnoughGold();
 
-            // 🔊 ÂM THANH FAIL
-            // if (AudioManager.Instance != null)
-            //     AudioManager.Instance.PlayBuyFail();
-
+            // Rung nút cảnh báo
             if (!buttonsCurrentlyShaking.Contains(btn.transform))
             {
                 StartCoroutine(SafeShake(btn.transform));
@@ -94,11 +108,7 @@ public class ShopController : MonoBehaviour
         GoldData.SetGold(gold - price);
         ItemData.AddItem(key, 1);
 
-        // 🔊 ÂM THANH SUCCESS
-        // if (AudioManager.Instance != null)
-        //     AudioManager.Instance.PlayBuySuccess();
-
-        UpdateUI();
+        UpdateUI(); // Cập nhật lại giao diện ngay lập tức
     }
 
     void ShowNotEnoughGold()
@@ -116,37 +126,34 @@ public class ShopController : MonoBehaviour
         notifyCoroutine = null;
     }
 
-    // HÀM RUNG AN TOÀN TUYỆT ĐỐI
+    // HÀM RUNG NÚT
     IEnumerator SafeShake(Transform btnTransform)
     {
         buttonsCurrentlyShaking.Add(btnTransform);
         RectTransform rect = btnTransform as RectTransform;
+
+        if (!buttonOriginalPositions.ContainsKey(btnTransform)) SavePosition(btnTransform);
         Vector2 originalAnchoredPos = buttonOriginalPositions[btnTransform];
 
-        float duration = 0.2f; // Rung trong 0.2 giây
+        float duration = 0.2f;
         float elapsed = 0f;
-        float strength = 12f;
+        float strength = 10f;
 
         while (elapsed < duration)
         {
-            elapsed += Time.unscaledDeltaTime; // Dùng unscaled để mượt hơn
-            
-            // Tạo độ lệch ngẫu nhiên
+            elapsed += Time.unscaledDeltaTime;
             float offsetX = Random.Range(-1f, 1f) * strength;
-            
-            // Áp dụng độ lệch dựa trên VỊ TRÍ GỐC ĐÃ LƯU (Không lấy vị trí hiện tại)
             rect.anchoredPosition = new Vector2(originalAnchoredPos.x + offsetX, originalAnchoredPos.y);
-            
             yield return null;
         }
 
-        // KẾT THÚC: Ép nút về đúng vị trí gốc ban đầu
         rect.anchoredPosition = originalAnchoredPos;
         buttonsCurrentlyShaking.Remove(btnTransform);
     }
 
     void UpdateButtonColor(Button btn, bool canBuy)
     {
+        if (btn == null) return;
         Image img = btn.GetComponent<Image>();
         if (img != null) img.color = canBuy ? normalColor : notEnoughColor;
     }
