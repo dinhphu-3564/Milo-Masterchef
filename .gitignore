@@ -1,3 +1,7 @@
+# --- [QUAN TRỌNG] Folder rác của Visual Studio (Cái sửa lỗi cho bạn) ---
+.vs/
+
+# --- Các thư mục tạm của Unity (Bắt buộc chặn) ---
 /[Ll]ibrary/
 /[Tt]emp/
 /[Oo]bj/
@@ -5,13 +9,15 @@
 /[Bb]uilds/
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
+/[Mm]emoryCaptures/
 
-# Visual Studio Code
+# --- Visual Studio Code & IDE khác ---
 .vscode/
 .history/
 *.code-workspace
+.idea/
 
-# File tự sinh của Visual Studio
+# --- Các file tự sinh của Visual Studio (Không cần up lên Git) ---
 *.csproj
 *.unityproj
 *.sln
@@ -26,14 +32,7 @@
 *.opendb
 *.VC.db
 
-# Hệ điều hành
+# --- Hệ điều hành (Rác của Mac/Windows) ---
 .DS_Store
 Thumbs.db
-
-# Thư mục build
-/[Bb]uild/
-/[Bb]uilds/
-buildsettings.app/
-/[Ll]ibrary/
-/[Tt]emp/
-/[Oo]bj/
+Desktop.ini
