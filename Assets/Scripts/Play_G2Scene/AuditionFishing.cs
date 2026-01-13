@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
 using System.Collections;
+using Play_G2Scene;
 
 public class AuditionFishing : MonoBehaviour
 {

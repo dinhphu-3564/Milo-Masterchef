@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Play_G3Scene;
 
 public class CookingPan : MonoBehaviour
 {

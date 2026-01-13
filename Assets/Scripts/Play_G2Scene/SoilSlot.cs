@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using TMPro;
 using System; // [BẮT BUỘC] Để xử lý thời gian thực
+using Play_G2Scene;
 
 public class SoilSlot : MonoBehaviour
 {

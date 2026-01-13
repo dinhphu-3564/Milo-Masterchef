@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Play_G2Scene;
 
 public class PlayerG2 : MonoBehaviour
 {

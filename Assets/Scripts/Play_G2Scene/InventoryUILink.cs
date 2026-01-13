@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using TMPro;
+using Play_G2Scene;
 
 public class InventoryUILink : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class InventoryUILink : MonoBehaviour
     public TextMeshProUGUI meatText;
     public TextMeshProUGUI fishText;
     public TextMeshProUGUI chickenText; // Nếu có
+    public TextMeshProUGUI tomatoText; // Thêm dòng này cho cà chua
 
     void Start()
     {
@@ -24,6 +26,7 @@ public class InventoryUILink : MonoBehaviour
             InventoryManager.instance.meatAmountText = this.meatText;
             InventoryManager.instance.fishAmountText = this.fishText;
             InventoryManager.instance.chickenAmountText = this.chickenText;
+            InventoryManager.instance.tomatoAmountText = this.tomatoText; // Thêm dòng này
 
             // Bắt ông trùm cập nhật lại số liệu lên bảng mới ngay lập tức
             InventoryManager.instance.UpdateUI();

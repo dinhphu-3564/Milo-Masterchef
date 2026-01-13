@@ -8117,12 +8117,12 @@ MonoBehaviour:
   thitText: {fileID: 634941186}
   rauText: {fileID: 1244017802}
   caChuaText: {fileID: 757264458}
-  miCount: 12
-  caCount: 10
-  gaCount: 10
-  thitCount: 10
-  rauCount: 14
-  caChuaCount: 14
+  miCount: 1
+  caCount: 1
+  gaCount: 1
+  thitCount: 1
+  rauCount: 1
+  caChuaCount: 1
 --- !u!1 &2071283296
 GameObject:
   m_ObjectHideFlags: 0

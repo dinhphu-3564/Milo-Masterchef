@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using TMPro; // Nhớ dòng này để dùng TextMeshPro
 
+namespace Play_G3Scene
+{
 public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager Instance; // Singleton để gọi từ CookingPan
@@ -29,7 +31,32 @@ public class InventoryManager : MonoBehaviour
 
     void Start()
     {
+        // Chuyển đổi dữ liệu từ màn 2 sang màn 3
+        LoadDataFromG2();
         UpdateAllUI();
+    }
+
+    // Hàm chuyển đổi dữ liệu từ màn 2 (Play_G2Scene) sang màn 3
+    void LoadDataFromG2()
+    {
+        // Lấy dữ liệu từ PlayerPrefs (đã được lưu bởi màn 2)
+        int veggieCount = PlayerPrefs.GetInt("VeggieSaved", 0);
+        int riceCount = PlayerPrefs.GetInt("RiceSaved", 0);
+        int meatCount = PlayerPrefs.GetInt("MeatSaved", 0);
+        int chickenMeatCount = PlayerPrefs.GetInt("ChickenSaved", 0);
+        int fishMeatCount = PlayerPrefs.GetInt("FishMeatSaved", 0);
+        int tomatoCount = PlayerPrefs.GetInt("TomatoSaved", 0);
+
+        // Chuyển đổi dữ liệu từ màn 2 sang màn 3:
+        // Màn 2 -> Màn 3
+        miCount = riceCount;           // Gạo/Lúa -> Mì
+        caCount = fishMeatCount;        // Cá -> Cá
+        gaCount = chickenMeatCount;     // Gà -> Gà
+        thitCount = meatCount;          // Thịt Bò -> Thịt Heo
+        rauCount = veggieCount;         // Rau Cải -> Rau
+        caChuaCount = tomatoCount;      // Cà Chua -> Cà Chua
+
+        Debug.Log($"Đã chuyển đổi dữ liệu từ màn 2: Mì={miCount}, Cá={caCount}, Gà={gaCount}, Thịt={thitCount}, Rau={rauCount}, Cà Chua={caChuaCount}");
     }
 
     // Cập nhật toàn bộ số hiển thị
@@ -81,4 +108,5 @@ public class InventoryManager : MonoBehaviour
             return false;  // Báo là hết hàng
         }
     }
+}
 }

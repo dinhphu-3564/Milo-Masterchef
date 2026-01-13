@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using TMPro;
 using System; // [BẮT BUỘC]
+using Play_G2Scene;
 
 public class CowBarn : MonoBehaviour
 {
