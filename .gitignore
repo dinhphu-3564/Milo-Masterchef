@@ -1,3 +1,7 @@
+# --- Visual Studio ---
+.vs/
+
+# --- Unity temp folders ---
 /[Ll]ibrary/
 /[Tt]emp/
 /[Oo]bj/
@@ -5,13 +9,20 @@
 /[Bb]uilds/
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
+/[Mm]emoryCaptures/
 
-# Visual Studio Code
+# --- Unity Editor / Binary files (IMPORTANT) ---
+*.app/
+*.dll
+*.dylib
+
+# --- IDEs ---
 .vscode/
 .history/
 *.code-workspace
+.idea/
 
-# File tự sinh của Visual Studio
+# --- Visual Studio / Unity auto-generated files ---
 *.csproj
 *.unityproj
 *.sln
@@ -26,14 +37,7 @@
 *.opendb
 *.VC.db
 
-# Hệ điều hành
+# --- OS files ---
 .DS_Store
 Thumbs.db
-
-# Thư mục build
-/[Bb]uild/
-/[Bb]uilds/
-buildsettings.app/
-/[Ll]ibrary/
-/[Tt]emp/
-/[Oo]bj/
+Desktop.ini
