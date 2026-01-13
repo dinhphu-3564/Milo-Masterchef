@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4ec2a381a488b4812862b7ddc4ff39c0
+guid: 31d934401a898564ea2d4629dda5a1b9
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,9 +43,9 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 0
+  spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -121,7 +121,91 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: angry-cs_0
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 333
+        width: 350
+        height: 360
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7af0a0c0b2b2bf442a4968efd8d018c1
+      internalID: -167959545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: angry-cs_1
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 330
+        width: 330
+        height: 367
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43641900d02f35247a452e6e67e85b95
+      internalID: -215892868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: angry-cs_2
+      rect:
+        serializedVersion: 2
+        x: 773
+        y: 320
+        width: 451
+        height: 407
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7aa3154605030c4da358a6c844a1285
+      internalID: 455356093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: angry-cs_3
+      rect:
+        serializedVersion: 2
+        x: 1250
+        y: 345
+        width: 243
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b9cd858df46e8444bbe1c8bb52c8279
+      internalID: 1490278178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -132,7 +216,11 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      angry-cs_0: -167959545
+      angry-cs_1: -215892868
+      angry-cs_2: 455356093
+      angry-cs_3: 1490278178
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
