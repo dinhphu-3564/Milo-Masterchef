@@ -1900,7 +1900,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gold: 0
   goldText: {fileID: 633243575}
-  gameTime: 90
+  gameTime: 30
   timeText: {fileID: 1582116101}
   startPanel: {fileID: 566224299}
   gameOverPanel: {fileID: 534524430}

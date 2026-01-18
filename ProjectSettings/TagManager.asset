@@ -10,6 +10,7 @@ TagManager:
   - Rock
   - Pan
   - Customer
+  - Soil
   layers:
   - Default
   - TransparentFX

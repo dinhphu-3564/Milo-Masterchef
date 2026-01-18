@@ -113,13 +113,13 @@ public class Customer : MonoBehaviour
 
         if (dishName == currentRequest)
         {
-            int points = (dishName == "MiY") ? 25 : 15;
+            int points = (dishName == "MiY") ? 30 : 20;
             if (LevelManager.Instance != null) LevelManager.Instance.AddScore(points);
             Leave(true);
         }
         else
         {
-            if (LevelManager.Instance != null) LevelManager.Instance.AddScore(-10);
+            if (LevelManager.Instance != null) LevelManager.Instance.AddScore(-5);
             MakeAngry();
             Debug.Log("Sai món! Khách giận.");
             Leave(false);

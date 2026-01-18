@@ -7158,12 +7158,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryPanel: {fileID: 1759289634}
-  veggieText: {fileID: 894785010}
+  veggieText: {fileID: 1607088123}
   riceText: {fileID: 985263644}
   meatText: {fileID: 875991474}
   fishText: {fileID: 1591884959}
   chickenText: {fileID: 2143271727}
-  tomatoText: {fileID: 0}
+  tomatoText: {fileID: 894785010}
 --- !u!1001 &2003127204
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10575,7 +10575,7 @@ MonoBehaviour:
   meatAmountText: {fileID: 875991474}
   chickenAmountText: {fileID: 2143271727}
   fishAmountText: {fileID: 1591884959}
-  tomatoAmountText: {fileID: 1607088123}
+  tomatoAmountText: {fileID: 894785010}
 --- !u!114 &8806765626131239542
 MonoBehaviour:
   m_ObjectHideFlags: 0

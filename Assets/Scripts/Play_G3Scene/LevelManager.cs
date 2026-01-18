@@ -135,6 +135,10 @@ public class LevelManager : MonoBehaviour
             finalScoreText.text = currentScore.ToString();
         }
 
+        // --- Lưu điểm tinh thông vào PlayerPrefs ---
+        ProficiencyData.AddProficiency(currentScore);
+        Debug.Log($"Đã lưu điểm tinh thông: {currentScore}. Tổng hiện tại: {ProficiencyData.GetProficiency()}/1000");
+
         if (ingredientsBasket != null)
         {
             Collider2D[] allColliders = ingredientsBasket.GetComponentsInChildren<Collider2D>();
