@@ -13,21 +13,29 @@ public class ProgressSceneManager : MonoBehaviour
     public GameObject winPanel;             // Panel thông báo Win Game (tùy chọn)
     public Button resetButton;              // Nút Reset sau khi win (tùy chọn)
 
+    [Header("Audio")]
+    public AudioSource audioSource;         // AudioSource cho âm thanh
+    public AudioClip soundWinGame;          // Âm thanh khi đầy thanh progress (win game)
+    [Range(0f, 1f)]
+    public float sfxVolume = 1f;           // Âm lượng SFX (0-1)
+
     private const int MAX_PROFICIENCY = 1000;
+    private bool hasPlayedWinSound = false; // Đảm bảo chỉ phát âm thanh win một lần
 
     void Start()
     {
         // Tự động cấu hình slider để có góc bo tròn (nếu dùng sprite 9-slice)
         ConfigureSliderForRoundedCorners();
         
-        UpdateProgressUI();
-        CheckWinCondition();
-
-        // Nếu có nút Reset, gán sự kiện
+        // Ẩn nút reset ban đầu (chỉ hiện khi đạt 1000 điểm)
         if (resetButton != null)
         {
+            resetButton.gameObject.SetActive(false);
             resetButton.onClick.AddListener(OnResetClicked);
         }
+        
+        UpdateProgressUI();
+        CheckWinCondition();
     }
 
     // Hàm cấu hình slider để có góc bo tròn
@@ -96,14 +104,38 @@ public class ProgressSceneManager : MonoBehaviour
         {
             Debug.Log(">>> WIN GAME! Đã đạt 1000 điểm tinh thông!");
             
+            // Phát âm thanh win game (chỉ phát một lần)
+            if (!hasPlayedWinSound)
+            {
+                PlayWinSound();
+                hasPlayedWinSound = true;
+            }
+            
             // Hiển thị panel Win Game (nếu có)
             if (winPanel != null)
             {
                 winPanel.SetActive(true);
             }
 
+            // Hiển thị nút Reset khi đạt 1000 điểm
+            if (resetButton != null)
+            {
+                resetButton.gameObject.SetActive(true);
+            }
+
             // Tự động reset (nếu muốn) hoặc để người chơi bấm nút
             // AutoReset(); // Bỏ comment nếu muốn tự động reset
+        }
+        else
+        {
+            // Reset flag nếu chưa win
+            hasPlayedWinSound = false;
+            
+            // Ẩn nút Reset nếu chưa đạt 1000 điểm
+            if (resetButton != null)
+            {
+                resetButton.gameObject.SetActive(false);
+            }
         }
     }
 
@@ -111,14 +143,49 @@ public class ProgressSceneManager : MonoBehaviour
     public void OnResetClicked()
     {
         ProficiencyData.ResetProficiency();
+        hasPlayedWinSound = false; // Reset flag để có thể phát lại âm thanh khi win lần sau
         UpdateProgressUI();
         
+        // Ẩn panel Win Game
         if (winPanel != null)
         {
             winPanel.SetActive(false);
         }
 
+        // Ẩn nút Reset sau khi reset
+        if (resetButton != null)
+        {
+            resetButton.gameObject.SetActive(false);
+        }
+
         Debug.Log(">>> Đã reset điểm tinh thông về 0");
+    }
+
+    // Hàm phát âm thanh win game
+    void PlayWinSound()
+    {
+        if (soundWinGame == null)
+        {
+            Debug.LogWarning("ProgressSceneManager: soundWinGame is null!");
+            return;
+        }
+
+        if (audioSource != null)
+        {
+            audioSource.PlayOneShot(soundWinGame, sfxVolume);
+        }
+        else
+        {
+            // Nếu không có AudioSource, dùng PlayClipAtPoint
+            if (Camera.main != null)
+            {
+                AudioSource.PlayClipAtPoint(soundWinGame, Camera.main.transform.position, sfxVolume);
+            }
+            else
+            {
+                Debug.LogWarning("ProgressSceneManager: Camera.main is null!");
+            }
+        }
     }
 
     // Tự động reset (gọi khi win game)

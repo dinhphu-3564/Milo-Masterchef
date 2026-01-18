@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class IngredientDrag : MonoBehaviour
 {
@@ -17,6 +17,12 @@ public class IngredientDrag : MonoBehaviour
         /*
         if (ingredientName == "Mi" && GameManager.Instance.miCount <= 0) return;
         */
+
+        // Phát âm thanh khi click lấy nguyên liệu
+        if (LevelManager.Instance != null)
+        {
+            LevelManager.Instance.PlayPickIngredientSound();
+        }
 
         // 2. Tạo ra một bản sao (Clone)
         currentDragObject = Instantiate(gameObject, transform.position, Quaternion.identity);
@@ -69,6 +75,7 @@ public class IngredientDrag : MonoBehaviour
                 hitCollider.GetComponent<CookingPan>().AddIngredient(ingredientName, mySprite);
 
                 Debug.Log("Đã bỏ " + ingredientName + " vào bếp!");
+                // Lưu ý: Âm thanh nấu ăn sẽ được phát khi bắt đầu nấu (trong CookingPan)
             }
 
             Destroy(currentDragObject);

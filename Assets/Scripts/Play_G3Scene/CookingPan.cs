@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,6 +17,9 @@ public class CookingPan : MonoBehaviour
     public GameObject miYPrefab;
     public GameObject gaChienPrefab;
     public GameObject caChienPrefab;
+
+    [Header("Audio")]
+    public AudioSource cookingAudioSource; // AudioSource riêng cho âm thanh nấu ăn (loop)
 
     // Dữ liệu nội bộ
     private List<string> addedIngredients = new List<string>();
@@ -96,6 +99,12 @@ public class CookingPan : MonoBehaviour
    
     void ClearPan()
     {
+        // Dừng âm thanh nấu ăn nếu đang phát
+        if (cookingAudioSource != null && cookingAudioSource.isPlaying)
+        {
+            cookingAudioSource.Stop();
+        }
+
         // Xóa hình ảnh nguyên liệu trên chảo
         foreach (Transform slot in ingredientSlots)
         {
@@ -236,20 +245,29 @@ public class CookingPan : MonoBehaviour
         switch (dishName)
         {
             case "MiY":
-                cookingTime = 4f;  // Mì Ý nấu 5 giây
+                cookingTime = 3f;  // Mì Ý nấu 5 giây
                 break;
             case "GaChien":
-                cookingTime = 4.5f;  // Gà chiên nấu 8 giây
+                cookingTime = 3.5f;  // Gà chiên nấu 8 giây
                 break;
             case "CaChien":
-                cookingTime = 4.5f;  // Cá chiên nấu 7 giây
+                cookingTime = 3.5f;  // Cá chiên nấu 7 giây
                 break;
             default:
-                cookingTime = 3f;  // Món lạ nào đó
+                cookingTime = 2.5f;  // Món lạ nào đó
                 break;
         }
 
         Debug.Log("Đang nấu món " + dishName + " trong " + cookingTime + "s...");
+
+        // Phát âm thanh nấu ăn loop khi bắt đầu nấu
+        if (cookingAudioSource != null && LevelManager.Instance != null && LevelManager.Instance.soundCooking != null)
+        {
+            cookingAudioSource.clip = LevelManager.Instance.soundCooking;
+            cookingAudioSource.loop = true;
+            cookingAudioSource.volume = LevelManager.Instance.sfxVolume;
+            cookingAudioSource.Play();
+        }
 
         StartCoroutine(CookingProcess(dishName, cookingTime)); // Test 5 giây cho nhanh
     }
@@ -272,6 +290,12 @@ public class CookingPan : MonoBehaviour
 
         // --- KHI NẤU XONG ---
         Debug.Log(">>> NẤU XONG MÓN: " + dishName);
+
+        // Dừng âm thanh nấu ăn khi nấu xong
+        if (cookingAudioSource != null && cookingAudioSource.isPlaying)
+        {
+            cookingAudioSource.Stop();
+        }
 
         // Ẩn thanh slider
         if (timerCanvas != null) timerCanvas.SetActive(false);

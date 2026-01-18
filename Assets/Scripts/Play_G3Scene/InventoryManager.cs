@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using TMPro; // Nhớ dòng này để dùng TextMeshPro
 
 namespace Play_G3Scene
@@ -107,6 +107,21 @@ public class InventoryManager : MonoBehaviour
             Debug.Log("Hết nguyên liệu: " + name);
             return false;  // Báo là hết hàng
         }
+    }
+
+    // Hàm lưu số lượng nguyên liệu còn lại vào PlayerPrefs
+    public void SaveRemainingIngredients()
+    {
+        // Lưu theo format của màn 2 để tương thích
+        PlayerPrefs.SetInt("RiceSaved", miCount);           // Mì -> Gạo/Lúa
+        PlayerPrefs.SetInt("FishMeatSaved", caCount);        // Cá -> Cá
+        PlayerPrefs.SetInt("ChickenSaved", gaCount);         // Gà -> Gà
+        PlayerPrefs.SetInt("MeatSaved", thitCount);           // Thịt Heo -> Thịt Bò
+        PlayerPrefs.SetInt("VeggieSaved", rauCount);         // Rau -> Rau Cải
+        PlayerPrefs.SetInt("TomatoSaved", caChuaCount);      // Cà Chua -> Cà Chua
+        PlayerPrefs.Save();
+        
+        Debug.Log($"Đã lưu nguyên liệu còn lại: Mì={miCount}, Cá={caCount}, Gà={gaCount}, Thịt={thitCount}, Rau={rauCount}, Cà Chua={caChuaCount}");
     }
 }
 }

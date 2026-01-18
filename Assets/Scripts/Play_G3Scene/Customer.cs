@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI; // <--- BẮT BUỘC CÓ để dùng Slider
 
 public class Customer : MonoBehaviour
@@ -105,6 +105,12 @@ public class Customer : MonoBehaviour
             bubbleRenderer.gameObject.SetActive(true);
             bubbleRenderer.sprite = dishIcons[randomIndex];
         }
+
+        // Phát âm thanh khách đến
+        if (LevelManager.Instance != null)
+        {
+            LevelManager.Instance.PlayCustomerArriveSound();
+        }
     }
 
     public void ReceiveDish(string dishName)
@@ -114,12 +120,20 @@ public class Customer : MonoBehaviour
         if (dishName == currentRequest)
         {
             int points = (dishName == "MiY") ? 30 : 20;
-            if (LevelManager.Instance != null) LevelManager.Instance.AddScore(points);
+            if (LevelManager.Instance != null)
+            {
+                LevelManager.Instance.AddScore(points);
+                LevelManager.Instance.PlayCorrectSound(); // Phát âm thanh đúng
+            }
             Leave(true);
         }
         else
         {
-            if (LevelManager.Instance != null) LevelManager.Instance.AddScore(-5);
+            if (LevelManager.Instance != null)
+            {
+                LevelManager.Instance.AddScore(-5);
+                LevelManager.Instance.PlayWrongSound(); // Phát âm thanh sai
+            }
             MakeAngry();
             Debug.Log("Sai món! Khách giận.");
             Leave(false);

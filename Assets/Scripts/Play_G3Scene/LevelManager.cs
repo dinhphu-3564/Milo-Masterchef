@@ -1,7 +1,8 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro; // Bắt buộc có để dùng TextMeshPro
+using Play_G3Scene; // Để dùng InventoryManager
 
 public class LevelManager : MonoBehaviour
 {
@@ -24,6 +25,22 @@ public class LevelManager : MonoBehaviour
     private float timeRemaining;
     public bool isGameOver = false;
     public GameObject ingredientsBasket;
+
+    [Header("Audio")]
+    public AudioSource bgmSource;              // Nhạc nền
+    [Header("SFX - Sound Effects")]
+    public AudioSource sfxSource;              // Nguồn âm thanh hiệu ứng (có thể tái sử dụng)
+    [Range(0f, 1f)]
+    public float sfxVolume = 1f;               // Âm lượng SFX (0-1)
+    [Range(0f, 1f)]
+    public float bgmVolume = 1f;               // Âm lượng BGM (0-1)
+    
+    public AudioClip soundPickIngredient;       // Âm thanh khi click lấy nguyên liệu
+    public AudioClip soundCooking;             // Âm thanh khi nấu ăn
+    public AudioClip soundCorrect;             // Âm thanh khi đúng món
+    public AudioClip soundWrong;               // Âm thanh khi sai món
+    public AudioClip soundCustomerArrive;      // Âm thanh khi khách đến
+    public AudioClip soundGameOver;            // Âm thanh khi game over
 
     void Awake()
     {
@@ -80,6 +97,14 @@ public class LevelManager : MonoBehaviour
 
         // 3. Mở khóa tương tác nguyên liệu
         ToggleIngredientsInteract(true);
+
+        // 4. Phát nhạc nền
+        if (bgmSource != null && bgmSource.clip != null)
+        {
+            bgmSource.volume = bgmVolume; // Áp dụng volume
+            bgmSource.loop = true;
+            bgmSource.Play();
+        }
 
         Debug.Log(">>> GAME START!");
     }
@@ -139,6 +164,12 @@ public class LevelManager : MonoBehaviour
         ProficiencyData.AddProficiency(currentScore);
         Debug.Log($"Đã lưu điểm tinh thông: {currentScore}. Tổng hiện tại: {ProficiencyData.GetProficiency()}/1000");
 
+        // --- Lưu nguyên liệu còn lại ---
+        if (InventoryManager.Instance != null)
+        {
+            InventoryManager.Instance.SaveRemainingIngredients();
+        }
+
         if (ingredientsBasket != null)
         {
             Collider2D[] allColliders = ingredientsBasket.GetComponentsInChildren<Collider2D>();
@@ -150,6 +181,10 @@ public class LevelManager : MonoBehaviour
         // 3. DỪNG TOÀN BỘ GAME (Đóng băng thời gian)
         // Lệnh này sẽ làm mọi thứ đứng im: Khách không đi, không nấu ăn được nữa
         Time.timeScale = 0;
+
+        // 4. Dừng nhạc nền và phát âm thanh game over
+        if (bgmSource != null) bgmSource.Stop();
+        PlaySFX(soundGameOver);
 
         Debug.Log(">>> GAME OVER - GAME PAUSED");
     }
@@ -169,5 +204,67 @@ public class LevelManager : MonoBehaviour
         isRestart = false;
         Time.timeScale = 1;
         SceneManager.LoadScene("MainMenu"); // Đổi tên "MenuScene" thành tên màn hình menu của bạn
+    }
+
+    // ===================== AUDIO =====================
+    // Hàm phát âm thanh hiệu ứng (SFX) với volume tùy chỉnh
+    public void PlaySFX(AudioClip clip, float volume = -1f)
+    {
+        if (clip == null)
+        {
+            Debug.LogWarning("LevelManager.PlaySFX: AudioClip is null!");
+            return;
+        }
+
+        // Nếu không chỉ định volume, dùng volume mặc định
+        float finalVolume = (volume < 0) ? sfxVolume : volume;
+
+        // Nếu có AudioSource riêng cho SFX, dùng nó
+        if (sfxSource != null)
+        {
+            sfxSource.PlayOneShot(clip, finalVolume);
+        }
+        else
+        {
+            // Nếu không có, tạo AudioSource tạm thời
+            if (Camera.main != null)
+            {
+                AudioSource.PlayClipAtPoint(clip, Camera.main.transform.position, finalVolume);
+            }
+            else
+            {
+                Debug.LogWarning("LevelManager.PlaySFX: Camera.main is null!");
+            }
+        }
+    }
+
+    // Hàm phát âm thanh nấu ăn
+    public void PlayCookingSound()
+    {
+        PlaySFX(soundCooking);
+    }
+
+    // Hàm phát âm thanh đúng món
+    public void PlayCorrectSound()
+    {
+        PlaySFX(soundCorrect);
+    }
+
+    // Hàm phát âm thanh sai món
+    public void PlayWrongSound()
+    {
+        PlaySFX(soundWrong);
+    }
+
+    // Hàm phát âm thanh khách đến
+    public void PlayCustomerArriveSound()
+    {
+        PlaySFX(soundCustomerArrive);
+    }
+
+    // Hàm phát âm thanh khi click lấy nguyên liệu
+    public void PlayPickIngredientSound()
+    {
+        PlaySFX(soundPickIngredient);
     }
 }
